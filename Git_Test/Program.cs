@@ -13,11 +13,26 @@ namespace Git_Test
             string user_input;
             int int_guess = -1;
             int rand_num;
+            int lower;
+            int upper;
 
-            Console.WriteLine("I am thinking of a number between 0 and 100...");
+            Console.WriteLine("I am thinking of a number between x and y...");
 
+            // asks for lower bound
+            Console.WriteLine("Please input a value for x: ");
+            user_input = Console.ReadLine();
+            lower = Convert.ToInt32(user_input);
+
+            // asks for upper bound
+            Console.WriteLine("Please input a value for y: ");
+            user_input = Console.ReadLine();
+            upper = Convert.ToInt32(user_input);
+
+            Console.WriteLine("I am now thinking of a number between " + lower + " and " + upper + "...");
+
+            // seeds rng
             Random rand = new Random();
-            rand_num = rand.Next(0, 100);
+            rand_num = rand.Next(lower, upper);
 
             while (int_guess != rand_num)
             {
@@ -25,7 +40,7 @@ namespace Git_Test
                 user_input = Console.ReadLine();
                 int_guess = Convert.ToInt32(user_input);
 
-                if (int_guess < 0 || int_guess > 100) // if number is out of bounds
+                if (int_guess < lower || int_guess > upper) // if number is out of bounds
                 {
                     Console.WriteLine("Your number is out of bounds, please try again.");
                 }
@@ -40,7 +55,7 @@ namespace Git_Test
 
             }
 
-            Console.WriteLine("Congratulations! You guessed my number correctly!");
+            Console.WriteLine("Congratulations! You guessed my number (" + rand_num + ") correctly!");
             Console.Write("Press any key to exit.");
             Console.ReadKey();
 
